@@ -28,6 +28,38 @@ See [LOOP_EXPLANATION.md](./LOOP_EXPLANATION.md) for full details.
 
 ---
 
+## Scope: Phase 1 (Complete)
+
+**What's Included (v1.0.0):**
+
+| Component | Type | Purpose |
+|-----------|------|---------|
+| **Feedback_Tracker** | Primitive | Detects patterns → encodes rules |
+| **Traceability Enforcer** | Enforcer | Validates naming + links |
+| **Gap Visualizer** | Primitive | Shows gaps → recommends fixes |
+
+**Total:** 3 primitives + 1 enforcer
+
+**What's NOT Included:**
+
+- TDD/ATDD/BDD methodologies (development practices, not loop engine)
+- Code review processes (team workflows, not loop engine)
+- General refactoring patterns (broad patterns, not loop-specific)
+- ImpactAnalyzer (planned for Phase 2, when needed)
+- CuraOps framework skills (separate product)
+
+**Why This Scope:**
+
+The loop is **complete and self-sufficient**. Adding more features would dilute its identity as a minimal, failure-driven system.
+
+---
+
+## Roadmap
+
+See [ROADMAP.md](./ROADMAP.md) for Phase 1 status and future plans (Phase 2: Impact Analysis, Phase 3: Advanced Integration).
+
+---
+
 ## Quick Start (2 Minutes)
 
 **Try the loop in 2 minutes:**

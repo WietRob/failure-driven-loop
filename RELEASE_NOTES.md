@@ -2,6 +2,7 @@
 
 **Release Date:** 2025-01-08
 **Status:** Production-ready (Minimal Closed-Loop System)
+**Scope:** Phase 1 Only (Minimal Loop Engine)
 
 ---
 
@@ -31,6 +32,30 @@ This is not a process framework. This is not a checklist. This is a **closed-loo
 | Human memory | Machine detection |
 
 **The core insight:** The system doesn't just catch failures — it **learns from them** and prevents recurrence.
+
+---
+
+## Phase 1 Scope: What's Included
+
+| Component | Type | Status |
+|-----------|------|--------|
+| **Feedback_Tracker** | Primitive | ✅ Complete |
+| **Traceability Enforcer** | Enforcer | ✅ Complete |
+| **Gap Visualizer** | Primitive | ✅ Complete |
+
+**What's NOT Included:**
+
+| Item | Reason |
+|-------|----------|
+| TDD/ATDD/BDD methodologies | Development practices, not loop engine |
+| Code review processes | Team workflows, not loop engine |
+| General refactoring patterns | Too broad for this scope |
+| ImpactAnalyzer | Planned for Phase 2, when needed |
+| CuraOps framework skills | Separate product, not part of this loop |
+
+**Why This Scope:**
+
+The loop is **complete and self-sufficient**. Adding more components would dilute its identity as a minimal, failure-driven system.
 
 ---
 
