@@ -1,0 +1,254 @@
+Metadata-Version: 2.4
+Name: failure-driven-loop
+Version: 1.0.0
+Summary: A self-correcting engineering system that learns from failures
+Author-email: CuraOps Framework <development@curaops.io>
+License: MIT
+Project-URL: Homepage, https://github.com/curaops/failure-driven-loop
+Project-URL: Repository, https://github.com/curaops/failure-driven-loop
+Project-URL: Issues, https://github.com/curaops/failure-driven-loop/issues
+Keywords: engineering,feedback,traceability,enforcement,testing,quality,automation,cicd
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: pyyaml>=6.0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0; extra == "dev"
+Requires-Dist: pytest-cov>=4.0; extra == "dev"
+
+# Failure-Driven Enforcement Loop
+
+**Version:** 1.0.0
+**Status:** Production-ready (Minimal Closed-Loop System)
+
+A self-correcting engineering system that learns from failures.
+
+---
+
+## What This Is
+
+The Failure-Driven Enforcement Loop is a **minimal, closed-loop system** that:
+
+1. **Observes failures** in real-world development
+2. **Encodes patterns** into enforceable rules
+3. **Detects violations** automatically
+4. **Visualizes gaps** with actionable remediation
+5. **Repeats** — each cycle produces fewer failures
+
+### The Loop
+
+```
+FAILURE → Feedback_Tracker detects pattern
+         → Traceability Enforcer enforces rule
+         → Gap Visualizer shows what's missing
+         → Fewer failures → Loop continues
+```
+
+### Core Components
+
+| Component | Type | Purpose |
+|-----------|------|---------|
+| **Feedback_Tracker** | Primitive | Detects recurring error patterns → encodes into rules |
+| **Traceability Enforcer** | Enforcer | Validates naming + bidirectional links |
+| **Gap Visualizer** | Primitive | Shows WHERE chain is broken → recommends fixes |
+
+---
+
+## Installation
+
+```bash
+# From source
+cd failure-driven-loop
+pip install -e .
+
+# Or from PyPI (when published)
+pip install failure-driven-loop
+```
+
+---
+
+## Quick Start (5 Minutes)
+
+### 1. Validate Naming
+
+```bash
+# Check all test files
+fdl-validate-naming --all
+
+# Check specific file
+fdl-validate-naming --file tests/unit/TC-UT-001_component.py
+```
+
+### 2. Log a Failure
+
+```bash
+# Interactive mode
+fdl-log-feedback --interactive
+
+# Non-interactive
+fdl-log-feedback \
+  --type mistake \
+  --context "pytest fixture before import" \
+  --feedback "All imports must come before fixtures" \
+  --category Testing \
+  --severity high
+```
+
+### 3. Analyze Patterns
+
+```bash
+# Analyze all feedback
+fdl-analyze-patterns
+
+# Weekly report
+fdl-analyze-patterns --weekly
+```
+
+### 4. Visualize Gaps
+
+```bash
+# Visualize requirement chain
+fdl-tree-analyzer --us US-A1
+
+# JSON output for automation
+fdl-tree-analyzer --us US-A1 --json
+```
+
+### 5. Validate Links
+
+```bash
+# Validate bidirectional links
+fdl-validate-links --all
+```
+
+---
+
+## Examples
+
+### Example 1: Fix Naming Violation
+
+```bash
+$ fdl-validate-naming --file tests/unit/test_auth.py
+❌ FAIL: Invalid naming format
+💡 Rename to: TC-UT-001_auth.py
+
+$ mv tests/unit/test_auth.py tests/unit/TC-UT-001_auth.py
+
+$ fdl-validate-naming --file tests/unit/TC-UT-001_auth.py
+✅ PASS
+```
+
+### Example 2: Detect Recurring Pattern
+
+```bash
+# Log same failure 3 times
+$ fdl-log-feedback --type mistake --context "fixture before import" ...
+$ fdl-log-feedback --type repetition --context "fixture before import" ...
+$ fdl-log-feedback --type mistake --context "fixture before import" ...
+
+# Analyze patterns
+$ fdl-analyze-patterns
+# Output: Pattern detected! "test_naming" with 3 occurrences
+# Suggested update added to skill_update_suggestions.md
+```
+
+### Example 3: Visualize Missing Links
+
+```bash
+$ fdl-tree-analyzer --sw SW-REQ-001
+SW-REQ-001: Authentication Module
+├── src/auth/validator.py ❌ GAP!
+└── tests/unit/TC-UT-001_validator.py ❌ GAP!
+
+REMEDIATION:
+1. Create: src/auth/validator.py
+2. Create: tests/unit/TC-UT-001_validator.py
+```
+
+---
+
+## CLI Reference
+
+| Command | Description |
+|---------|-------------|
+| `fdl-validate-naming` | Validate test file naming conventions |
+| `fdl-validate-links` | Validate bidirectional requirement-test links |
+| `fdl-log-feedback` | Log failures for pattern detection |
+| `fdl-analyze-patterns` | Detect recurring patterns in feedback |
+| `fdl-tree-analyzer` | Visualize traceability chain gaps |
+
+### Common Options
+
+```bash
+# All commands support:
+--help          # Show help
+--json          # JSON output for automation
+--verbose       # Verbose output
+
+# Specific options:
+--file FILE     # Validate specific file
+--all           # Validate all files
+--level LEVEL   # Filter by level (UT, IT, ST, AT)
+--category CAT  # Filter by category
+--weekly        # Weekly report mode
+```
+
+---
+
+## Package Contents
+
+```
+failure_loop/
+├── __init__.py           # Main package
+├── scripts/
+│   ├── validate_naming.py    # Naming validation
+│   ├── validate_links.py     # Link validation
+│   ├── log_feedback.py       # Feedback logging
+│   ├── analyze_patterns.py   # Pattern detection
+│   └── tree_analyzer.py      # Gap visualization
+├── skills/
+│   ├── feedback_tracker/     # Skill documentation
+│   ├── traceability_enforcer/
+│   └── gap_visualizer/
+├── docs/
+│   ├── QUICK_START.md
+│   └── EXAMPLES.md
+└── pyproject.toml
+```
+
+---
+
+## Non-Goals
+
+This system is **not**:
+
+- ❌ A project management tool (Jira, etc.)
+- ❌ A test framework (pytest, unittest)
+- ❌ A metrics dashboard (Datadog, etc.)
+- ❌ A documentation generator (Sphinx, etc.)
+- ❌ An observability platform (Sentry, etc.)
+
+See [LOOP_EXPLANATION.md](./LOOP_EXPLANATION.md) for full details.
+
+---
+
+## Requirements
+
+- Python 3.10+
+- pyyaml
+
+---
+
+## License
+
+MIT
+
+---
+
+**The loop is closed. The system learns. Failures decrease.**
+

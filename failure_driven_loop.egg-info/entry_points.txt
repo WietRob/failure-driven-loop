@@ -1,0 +1,6 @@
+[console_scripts]
+fdl-analyze-patterns = failure_loop.scripts.analyze_patterns:main
+fdl-log-feedback = failure_loop.scripts.log_feedback:main
+fdl-tree-analyzer = failure_loop.scripts.tree_analyzer:main
+fdl-validate-links = failure_loop.scripts.validate_links:main
+fdl-validate-naming = failure_loop.scripts.validate_naming:main

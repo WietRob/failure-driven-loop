@@ -1,0 +1,69 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "failure-driven-loop"
+version = "1.0.0"
+description = "A self-correcting engineering system that learns from failures"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+authors = [
+    {name = "CuraOps Framework", email = "development@curaops.io"}
+]
+keywords = [
+    "engineering", "feedback", "traceability", "enforcement",
+    "testing", "quality", "automation", "cicd"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+dependencies = [
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+]
+
+[project.scripts]
+fdl-validate-naming = "failure_loop.scripts.validate_naming:main"
+fdl-validate-links = "failure_loop.scripts.validate_links:main"
+fdl-log-feedback = "failure_loop.scripts.log_feedback:main"
+fdl-analyze-patterns = "failure_loop.scripts.analyze_patterns:main"
+fdl-tree-analyzer = "failure_loop.scripts.tree_analyzer:main"
+
+[project.urls]
+Homepage = "https://github.com/curaops/failure-driven-loop"
+Repository = "https://github.com/curaops/failure-driven-loop"
+Issues = "https://github.com/curaops/failure-driven-loop/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["failure_loop*"]
+exclude = ["tests*", "docs*", "examples*"]
+
+[tool.setuptools.package-data]
+failure_loop = ["skills/*.md", "skills/*/scripts/*.py"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["TC-UT-*.py"]
+python_functions = ["test_*"]
+
+[tool.black]
+line-length = 100
+target-version = ['py310']
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"

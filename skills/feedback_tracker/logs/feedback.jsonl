@@ -1,0 +1,4 @@
+{"timestamp": "2026-01-08T12:19:59.159451", "session_id": "s20260108", "type": "mistake", "context": "Wrong test filename - missing TC-UT prefix", "feedback": "Renamed to TC-UT-001_auth.py", "category": "Naming", "severity": "medium"}
+{"timestamp": "2026-01-08T12:20:08.456102", "session_id": "s20260108", "type": "repetition", "context": "Another wrong test filename", "feedback": "Files should be TC-UT-XXX_name.py", "category": "Naming", "severity": "medium"}
+{"timestamp": "2026-01-08T12:20:08.476316", "session_id": "s20260108", "type": "mistake", "context": "Third naming violation", "feedback": "Must follow TC-LEVEL-ID_component pattern", "category": "Naming", "severity": "medium"}
+{"timestamp": "2026-01-08T12:20:41.256904", "session_id": "s20260108", "type": "mistake", "context": "Wrong test filename - missing TC-UT prefix", "feedback": "Renamed to TC-UT-001_auth.py", "category": "Naming", "severity": "medium"}

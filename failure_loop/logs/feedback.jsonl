@@ -1,0 +1,3 @@
+{"timestamp": "2026-01-08T14:01:32.965649", "session_id": "s20260108", "type": "mistake", "context": "Wrong test filename", "feedback": "Use TC-UT-XXX_name.py pattern", "category": "Naming", "severity": "medium"}
+{"timestamp": "2026-01-08T14:01:32.987252", "session_id": "s20260108", "type": "repetition", "context": "Another naming violation", "feedback": "Files should be TC-UT-XXX", "category": "Naming", "severity": "medium"}
+{"timestamp": "2026-01-08T14:01:33.008401", "session_id": "s20260108", "type": "mistake", "context": "Third naming violation", "feedback": "Must follow pattern", "category": "Naming", "severity": "medium"}
