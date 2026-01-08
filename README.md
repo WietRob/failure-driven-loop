@@ -66,7 +66,8 @@ See [ROADMAP.md](./ROADMAP.md) for Phase 1 status and future plans (Phase 2: Imp
 
 ```bash
 # 1. Detect a naming violation
-fdl-validate-naming --file tests/unit/test_auth.py
+fdl-validate-naming --file examples/minimal/tests/unit/test_auth.py
+# ❌ FAIL: Invalid naming format
 
 # 2. Log the failure
 fdl-log-feedback \
@@ -80,9 +81,12 @@ fdl-log-feedback \
 fdl-analyze-patterns
 
 # 4. Fix and verify
-mv tests/unit/test_auth.py tests/unit/TC-UT-001_auth.py
-fdl-validate-naming --file tests/unit/TC-UT-001_auth.py
+mv examples/minimal/tests/unit/test_auth.py examples/minimal/tests/unit/TC-UT-001_auth.py
+fdl-validate-naming --file examples/minimal/tests/unit/TC-UT-001_auth.py
+# ✅ PASS
 ```
+
+**See `examples/minimal/README.md` for full copy/paste demo with expected outputs.**
 
 ---
 

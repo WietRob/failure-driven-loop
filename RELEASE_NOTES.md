@@ -69,9 +69,6 @@ git clone https://github.com/WietRob/failure-driven-loop.git
 cd failure-driven-loop
 pip install -e .
 
-# Or from Git+PyPI (when PyPI is published)
-pip install "git+https://github.com/WietRob/failure-driven-loop@v1.0.0"
-
 # Verify installation
 fdl-validate-naming --help
 ```
@@ -79,11 +76,11 @@ fdl-validate-naming --help
 ### Your First Loop
 
 ```bash
-# 1. A failure occurs (wrong naming)
-fdl-validate-naming --file tests/unit/test_auth.py
-# ❌ FAIL: Expected TC-{LEVEL}-{ID}_{component}.py
+# 1. Detect a naming violation
+fdl-validate-naming --file examples/minimal/tests/unit/test_auth.py
+# ❌ FAIL: Invalid naming format
 
-# 2. Log the failure
+# 2. Log a failure
 fdl-log-feedback \
   --type mistake \
   --context "Wrong test filename" \
@@ -91,11 +88,14 @@ fdl-log-feedback \
   --category Naming \
   --severity medium
 
-# 3. Fix it (loop closes)
-mv tests/unit/test_auth.py tests/unit/TC-UT-001_auth.py
+# 3. Analyze patterns (after 3 similar errors)
+fdl-analyze-patterns
 
-# 4. Verify
-fdl-validate-naming --file tests/unit/TC-UT-001_auth.py
+# 4. Fix it (loop closes)
+mv examples/minimal/tests/unit/test_auth.py examples/minimal/tests/unit/TC-UT-001_auth.py
+
+# 5. Verify
+fdl-validate-naming --file examples/minimal/tests/unit/TC-UT-001_auth.py
 # ✅ PASS
 ```
 
@@ -111,6 +111,8 @@ fdl-analyze-patterns
 # Output: Pattern detected, rule suggested
 # The system now "remembers" this pattern
 ```
+
+**See `examples/minimal/README.md` for complete copy/paste demo with expected outputs.**
 
 ---
 
